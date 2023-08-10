@@ -3,6 +3,7 @@ from core.config import settings
 from beanie import init_beanie 
 from motor.motor_asyncio import AsyncIOMotorClient
 from models.stocks_model import StocksModel
+from api.api_v1.router import router
 
 
 tags_metadata = [
@@ -21,10 +22,14 @@ app = FastAPI(
     openapi_tags=tags_metadata
 )
 
+app.include_router(
+    router=router
+)
+
 
 @app.on_event('startup')
 async def app_init():
-    client_db = AsyncIOMotorClient(settings.MONGO_CONNECTION_STRING).eazy_indicator
+    client_db = AsyncIOMotorClient(settings.MONGO_CONNECTION_STRING).ei
     await init_beanie(
         database= client_db,
         document_models=[

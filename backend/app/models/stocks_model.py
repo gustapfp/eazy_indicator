@@ -6,30 +6,14 @@ from pydantic import Field
 
 class StocksModel(Document):
     stock_id: UUID = Field(default_factory=uuid4, unique=True)
-    cotacao: float
-    pl: float
-    pvp: float
-    psr: float
-    dy: float
-    pa: float
-    pcg: float
-    pebit: float
-    pacl: float
-    evebit: float
-    evebitda: float
-    mrgebit: float
-    mrgliq: float
-    roic: float
-    roe: float
-    liqc: float
-    liq2m: float
-    patrliq: float
-    divbpatr: float
-    c5y: float
+    price: float
+    purchase_price: float
     paper: str
+    stock_exchange: Optional[str]
+
 
     def __repr__(self) -> str:
-            return f" -> Stock Paper: {self.example} <-" 
+            return f" -> Stock Paper: {self.paper} <-" 
     
     def __str__(self) -> str:
         return self.paper

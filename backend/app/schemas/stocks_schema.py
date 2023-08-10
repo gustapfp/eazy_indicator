@@ -1,29 +1,15 @@
 from pydantic import BaseModel, Field
-
+from pydantic.types import Decimal
+from typing import Optional
 
 class StockSchema(BaseModel):
-    paper:str
-    cotacao:float
+    price: Decimal = Field(..., decimal_places=3)
+    purchase_price: Decimal = Field(..., mdecimal_places=3)
+    paper: str = Field(..., max_length=7)
 
-class StocksSchemaDetail(BaseModel):
-    cotacao: float
-    pl: float
-    pvp: float
-    psr: float
-    dy: float
-    pa: float
-    pcg: float
-    pebit: float
-    pacl: float
-    evebit: float
-    evebitda: float
-    mrgebit: float
-    mrgliq: float
-    roic: float
-    roe: float
-    liqc: float
-    liq2m: float
-    patrliq: float
-    divbpatr: float
-    c5y: float
+
+class StocksSchemaResponse(BaseModel):
+    price: float
+    purchase_price: float
     paper: str
+    stock_exchange: Optional[str]

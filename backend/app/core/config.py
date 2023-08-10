@@ -1,7 +1,7 @@
 from typing import List
 from decouple import config 
 from pydantic import AnyHttpUrl, BaseSettings
-
+from pymongo import MongoClient
 
 class Settings(BaseSettings):
      
@@ -14,6 +14,8 @@ class Settings(BaseSettings):
      PROJECT_NAME: str = 'EazyIndicator'
 
      MONGO_CONNECTION_STRING: str = config("MONGO_CONNECTION_STRING", cast=str)
+    
+     
 
      class Config:
         case_sensitive=True
