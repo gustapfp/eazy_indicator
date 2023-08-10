@@ -1,7 +1,6 @@
 from typing import List
 from decouple import config 
 from pydantic import AnyHttpUrl, BaseSettings
-from pymongo import MongoClient
 
 class Settings(BaseSettings):
      
@@ -12,7 +11,9 @@ class Settings(BaseSettings):
      ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 
      REFRESH_TOKEN_EXPIRE_MINUTE: int = 60*24*7 # 7 days
      PROJECT_NAME: str = 'EazyIndicator'
-
+     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = [
+         'http://localhost:3000'
+     ]
      MONGO_CONNECTION_STRING: str = config("MONGO_CONNECTION_STRING", cast=str)
     
      

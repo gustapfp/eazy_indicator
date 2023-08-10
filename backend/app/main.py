@@ -4,6 +4,7 @@ from beanie import init_beanie
 from motor.motor_asyncio import AsyncIOMotorClient
 from models.stocks_model import StocksModel
 from api.api_v1.router import router
+from fastapi.middleware.cors import CORSMiddleware
 
 
 tags_metadata = [
@@ -26,6 +27,13 @@ app.include_router(
     router=router
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.BACKEND_CORS_ORIGINS,
+    allow_credentials=True,
+    allow_methods=['*'], 
+    allow_headers=['*']
+)
 
 @app.on_event('startup')
 async def app_init():
