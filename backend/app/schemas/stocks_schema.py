@@ -13,3 +13,4 @@ class StocksSchemaResponse(BaseModel):
     purchase_price: float
     paper: str
     stock_exchange: Optional[str]
+    
