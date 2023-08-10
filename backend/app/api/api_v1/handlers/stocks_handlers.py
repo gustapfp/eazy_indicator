@@ -13,6 +13,7 @@ async def get_all_stocks_created(data: StockSchema):
 @stocks_router.get("/", summary='Get a list with all stocks created', status_code=status.HTTP_200_OK, response_model=List[StocksSchemaResponse])
 async def get_all_stocks_created():
     stocks = await StocksService.list_of_stocks() 
+    
     return stocks
 
 @stocks_router.get('/{id}', summary='Get a specific stock base on the id', status_code=status.HTTP_200_OK, response_model=StocksSchemaResponse)
@@ -25,7 +26,7 @@ async def update_stock(stock_id: UUID, data: StocksSchemaResponse):
     stock = await StocksService.update_stock(stock_id=stock_id, data=data)
     return stock
 
-@stocks_router.delete('/delete_stock/{id}',summary='Update a specefic a stock based on the id', status_code=status.HTTP_204_NO_CONTENT)
+@stocks_router.delete('/delete_stock/{id}',summary= 'Update a specefic a stock based on the id', status_code=status.HTTP_204_NO_CONTENT)
 async def delete_stock(stock_id:UUID):
     await StocksService.delete_stock(stock_id)
     
