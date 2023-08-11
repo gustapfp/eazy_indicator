@@ -6,6 +6,7 @@ class StockSchema(BaseModel):
     price: Decimal = Field(..., decimal_places=3)
     purchase_price: Decimal = Field(..., mdecimal_places=3)
     paper: str = Field(..., max_length=7)
+    stock_exchange: Optional[str]  = Field(..., max_length=7)
 
 
 class StocksSchemaResponse(BaseModel):
